@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router'
-import { LoginComponent } from './page/login/login.component'
 import { MainTemplateComponent } from './template/main-template/main-template.component'
-import { InicioComponent } from './page/inicio/inicio.component'
+import { AboutPageComponent } from './page/about.page/about.page.component'
+import { StartPageComponent } from './page/start.page/start.page.component'
+import { LoginPageComponent } from './page/login.page/login.page.component'
 
 export const routes: Routes = [
     {
         path: "",
-        component: LoginComponent,
+        component: LoginPageComponent,
         children: []
     },
     {
@@ -15,7 +16,11 @@ export const routes: Routes = [
         children: [
             {
                 path: "",
-                component: InicioComponent,
+                component: StartPageComponent,
+            },        
+            {
+                path: "about",
+                component: AboutPageComponent,
             },        
         ]
     },
