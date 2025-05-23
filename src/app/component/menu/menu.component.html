@@ -1,1 +1,12 @@
-<p>menu works!</p>
+<nav class="menu-container">
+  <ul class="menu-list">
+    <li *ngFor="let option of authService.menuOptions" class="menu-item">
+      <a [routerLink]="option.routerLink" 
+         routerLinkActive="active-link" 
+         [routerLinkActiveOptions]="{exact: true}" 
+         class="menu-link">
+        <span>{{option.label}}</span>
+      </a>
+    </li>
+  </ul>
+</nav>
