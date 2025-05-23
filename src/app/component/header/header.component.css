@@ -1,0 +1,31 @@
+header {
+  background-color: #2c3e50;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header-avatar-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 92px; /* Aumentei de 32px para 92px (adicional de 60px) para mover o avatar mais à esquerda */
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.avatar-container img, .avatar-container div {
+  transition: transform 0.2s;
+}
+
+.avatar-container:hover img, .avatar-container:hover div {
+  transform: scale(1.05);
+}

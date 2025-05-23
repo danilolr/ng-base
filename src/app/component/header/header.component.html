@@ -1,19 +1,27 @@
-<header class="text-white p-4 relative">
+<header class="text-white relative">
   <div class="flex items-center absolute top-0 left-0 p-4">
     <h1 class="text-xl font-bold">My Application</h1>
   </div>
     
-  <div class="flex items-center absolute top-0 right-0 p-4" *ngIf="authService.user">
-    <div class="mr-4">
-      <span class="text-gray-300 text-sm mr-3">Logged in as:</span>
-      <span class="font-medium">{{ authService.user.name }}</span>
+  <div class="header-avatar-container" *ngIf="authService.user">
+    <div class="user-profile">
+      <div class="flex items-center justify-center cursor-pointer">
+        <!-- Avatar do usuário (com fallback para avatar padrão) -->
+        <div class="avatar-container">
+          <img 
+            *ngIf="authService.user.avatar" 
+            [src]="authService.user.avatar" 
+            alt="User avatar"
+            class="w-10 h-10 rounded-full object-cover border border-gray-200"
+          >
+          <div 
+            *ngIf="!authService.user.avatar" 
+            class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-gray-200"
+          >
+            <span class="text-white text-sm">{{ getUserInitials() }}</span>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <button 
-      (click)="logout()" 
-      class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded text-sm transition duration-200"
-    >
-      Logout
-    </button>
   </div>
 </header>
