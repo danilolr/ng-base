@@ -11,15 +11,18 @@ import { AuthenticationService } from '../../../service/authentication.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  showDropdown = false;
+  
   constructor(
     public authService: AuthenticationService,
     private router: Router
   ) {}
 
   getUserInitials(): string {
-    if (!this.authService.user) return '';
+    if (!this.authService.user()) return '?'
     
-    const nameParts = this.authService.user.name.split(' ');
+    const nameParts = this.authService.user()?.name.split(' ')
+    if (!nameParts || nameParts.length === 0) return '?'
     if (nameParts.length === 1) {
       return nameParts[0].charAt(0).toUpperCase();
     }

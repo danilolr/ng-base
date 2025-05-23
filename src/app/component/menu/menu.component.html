@@ -1,6 +1,6 @@
 <nav class="menu-container">
   <ul class="menu-list">
-    <li *ngFor="let option of authService.menuOptions" class="menu-item">
+    <li *ngFor="let option of authService.menuOptions()" class="menu-item">
       <a [routerLink]="option.routerLink" 
          routerLinkActive="active-link" 
          [routerLinkActiveOptions]="{exact: true}" 

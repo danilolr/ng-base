@@ -4,21 +4,54 @@
   </div>
     
   <div class="header-avatar-container" *ngIf="authService.user">
-    <div class="user-profile">
+    <!-- Contenedor que engloba o avatar e o dropdown, com eventos de mouse aplicados a este contêiner -->
+    <div class="user-profile" (mouseenter)="showDropdown = true" (mouseleave)="showDropdown = false">
       <div class="flex items-center justify-center cursor-pointer">
         <!-- Avatar do usuário (com fallback para avatar padrão) -->
         <div class="avatar-container">
           <img 
-            *ngIf="authService.user.avatar" 
-            [src]="authService.user.avatar" 
+            *ngIf="authService.user()?.avatar" 
+            [src]="authService.user()!.avatar" 
             alt="User avatar"
             class="w-10 h-10 rounded-full object-cover border border-gray-200"
           >
           <div 
-            *ngIf="!authService.user.avatar" 
+            *ngIf="!authService.user()?.avatar" 
             class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-gray-200"
           >
             <span class="text-white text-sm">{{ getUserInitials() }}</span>
+          </div>
+        </div>
+        
+        <!-- Dropdown menu that appears on hover -->
+        <div *ngIf="showDropdown" class="dropdown-menu absolute right-4 top-16 bg-white shadow-lg rounded-md py-2 w-48 text-gray-800 z-50">
+          <div class="px-4 py-2 border-b border-gray-200">
+            <div class="flex items-center mb-2">
+              <div class="mr-3">
+                <!-- Avatar na dropdown -->
+                <img 
+                  *ngIf="authService.user()?.avatar" 
+                  [src]="authService.user()?.avatar" 
+                  alt="User avatar"
+                  class="w-10 h-10 rounded-full object-cover border border-gray-200"
+                >
+                <div 
+                  *ngIf="!authService.user()?.avatar" 
+                  class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center border border-gray-200"
+                >
+                  <span class="text-white text-sm">{{ getUserInitials() }}</span>
+                </div>
+              </div>
+              <div>
+                <p class="font-medium">{{ authService.user()?.name }}</p>
+                <p class="text-xs text-gray-500">{{ authService.user()?.email }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="px-2 pt-2">
+            <button (click)="logout()" class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 rounded-md flex items-center">
+              <span class="mr-2">🚪</span> Sair
+            </button>
           </div>
         </div>
       </div>
