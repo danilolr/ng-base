@@ -14,7 +14,7 @@ export class AuthenticationService {
     
     async login(user: string, password: string): Promise<boolean> {
         if (password === '123456') {
-            this.user = new User(1, 'Danilo Luiz Rheinheimer', user, 'token')
+            this.user = new User(1, 'Danilo Luiz Rheinheimer', user, 'token', null)
             return true
         } else {
             this.user = undefined
@@ -33,6 +33,7 @@ export class User {
         public id: number,
         public name: string,
         public email: string,
-        public token: string
+        public token: string,
+        public avatar: string | null = null
     ) {}
 }
